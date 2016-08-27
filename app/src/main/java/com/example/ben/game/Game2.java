@@ -29,7 +29,8 @@ public class Game2 extends Activity {
             TableRow tableRow=new TableRow(this);
             for (j=0;j<9;j++){
                 final TextView textView=new TextView(this);
-                textView.setText(""+a[i][j]);
+                if(a[i][j]==0)textView.setText("");
+                else textView.setText(""+a[i][j]);
                 textView.setId(i*10+j);
                 textView.setWidth(width);
                 textView.setHeight(width);
