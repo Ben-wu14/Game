@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void button(View view){
-        Intent i=new Intent(this,Game.class);
+        Intent i=new Intent(this,Game2.class);
         startActivity(i);
     }
     @Override
