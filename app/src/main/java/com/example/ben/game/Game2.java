@@ -2,6 +2,7 @@ package com.example.ben.game;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.util.DisplayMetrics;
@@ -31,7 +32,7 @@ public class Game2 extends Activity {
                 final TextView textView=new TextView(this);
                 if(a[i][j]==0)textView.setText("");
                 else textView.setText(""+a[i][j]);
-                textView.setId(i*10+j);
+                textView.setId(i * 10 + j);
                 textView.setWidth(width);
                 textView.setHeight(width);
                 textView.setGravity(0x11);//center
@@ -56,6 +57,21 @@ public class Game2 extends Activity {
                         int co=textView.getDrawingCacheBackgroundColor();
                         TextView pre=(TextView)findViewById(last_id);
                         pre.setBackgroundColor(co);
+                        int i=last_id/10,j=last_id%10;
+                        if(i==2||i==5)
+                        {
+                            if(j==2||j==5)
+                            {
+                                pre.setBackgroundResource(R.drawable.add_down_right);
+                            }else
+                                pre.setBackgroundResource(R.drawable.add_down);
+                        }else
+                        {
+                            if(j==2||j==5)
+                                pre.setBackgroundResource(R.drawable.add_right);
+                            else
+                                pre.setBackgroundResource(R.drawable.add_border);
+                        }
                         last_id=textView.getId();
                     }
                 });
