@@ -57,6 +57,7 @@ public class Game2 extends Activity {
                         int co=textView.getDrawingCacheBackgroundColor();
                         TextView pre=(TextView)findViewById(last_id);
                         pre.setBackgroundColor(co);
+                        pre.setBackgroundResource(R.drawable.add_border);
                         int i=last_id/10,j=last_id%10;
                         if(i==2||i==5)
                         {
