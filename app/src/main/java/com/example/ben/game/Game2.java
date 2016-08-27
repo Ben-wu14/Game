@@ -30,6 +30,7 @@ public class Game2 extends Activity {
                 textView.setWidth(width);
                 textView.setHeight(width);
                 textView.setGravity(0x11);
+                textView.setBackgroundResource(R.drawable.add_border);
                 tableRow.addView(textView);
             }
             layout.addView(tableRow);
