@@ -32,14 +32,15 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ;
+                Intent i = new Intent(MainActivity.this, Game2.class);
+                startActivity(i);
             }
         });
         Button difficult=(Button)findViewById(R.id.difficulty);
         difficult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(MainActivity.this,Difficulty.class);
+                Intent i = new Intent(MainActivity.this, Difficulty.class);
                 startActivity(i);
             }
         });
@@ -52,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void button(View view){
+        Intent i=new Intent(this,Game2.class);
+        startActivity(i);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
