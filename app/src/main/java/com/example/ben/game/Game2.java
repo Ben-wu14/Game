@@ -55,23 +55,23 @@ public class Game2 extends Activity {
                     public void onClick(View v) {
                         textView.setBackgroundColor(Color.parseColor("#B3E5FC"));
                         textView.setBackgroundResource(R.drawable.color_bacgr_border);
-                        int co=textView.getDrawingCacheBackgroundColor();
                         TextView pre=(TextView)findViewById(last_id);
-                        pre.setBackgroundColor(co);
-                        int i=last_id/10,j=last_id%10;
-                        if(i==2||i==5)
-                        {
-                            if(j==2||j==5)
+                        if(pre!=textView){
+                            int i=last_id/10,j=last_id%10;
+                            if(i==2||i==5)
                             {
-                                pre.setBackgroundResource(R.drawable.add_down_right);
+                                if(j==2||j==5)
+                                {
+                                    pre.setBackgroundResource(R.drawable.add_down_right);
+                                }else
+                                    pre.setBackgroundResource(R.drawable.add_down);
                             }else
-                                pre.setBackgroundResource(R.drawable.add_down);
-                        }else
-                        {
-                            if(j==2||j==5)
-                                pre.setBackgroundResource(R.drawable.add_right);
-                            else
-                                pre.setBackgroundResource(R.drawable.add_border);
+                            {
+                                if(j==2||j==5)
+                                    pre.setBackgroundResource(R.drawable.add_right);
+                                else
+                                    pre.setBackgroundResource(R.drawable.add_border);
+                            }
                         }
                         last_id=textView.getId();
                     }
