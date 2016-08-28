@@ -85,62 +85,42 @@ public class Game2 extends Activity {
     }
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("1");
     }
     public void buttonP2(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("2");
     }
     public void buttonP3(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("3");
     }
     public void buttonP4(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("4");
     }
     public void buttonP5(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("5");
     }
     public void buttonP6(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("6");
     }
     public void buttonP7(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("7");
     }
     public void buttonP8(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("8");
     }
     public void buttonP9(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("9");
     }
     public void buttonPc(View view){
         TextView t=(TextView)findViewById(last_id);
-        int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
         t.setText("");
     }
 }
