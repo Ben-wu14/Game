@@ -35,6 +35,9 @@ public class Game2 extends Activity {
                 else textView.setText(""+a[i][j]);
                 textView.setId(i * 10 + j);
                 textView.setWidth(width);
+                textView.setTextSize(width / 5);
+                if(a[i][j]==0)
+                    textView.setTextColor(Color.parseColor("#000000"));
                 textView.setHeight(width);
                 textView.setGravity(0x11);//center
                 if(i==2||i==5)
@@ -54,27 +57,25 @@ public class Game2 extends Activity {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        textView.setBackgroundColor(Color.parseColor("#B3E5FC"));
-                        textView.setBackgroundResource(R.drawable.color_bacgr_border);
-                        TextView pre=(TextView)findViewById(last_id);
-                        if(pre!=textView){
-                            int i=last_id/10,j=last_id%10;
-                            if(i==2||i==5)
-                            {
-                                if(j==2||j==5)
-                                {
-                                    pre.setBackgroundResource(R.drawable.add_down_right);
-                                }else
-                                    pre.setBackgroundResource(R.drawable.add_down);
-                            }else
-                            {
-                                if(j==2||j==5)
-                                    pre.setBackgroundResource(R.drawable.add_right);
-                                else
-                                    pre.setBackgroundResource(R.drawable.add_border);
+                        if(a[textView.getId()/10][textView.getId()%10]==0) {
+                            textView.setBackgroundResource(R.drawable.color_bacgr_border);
+                            TextView pre = (TextView) findViewById(last_id);
+                            if (pre != textView) {
+                                int i = last_id / 10, j = last_id % 10;
+                                if (i == 2 || i == 5) {
+                                    if (j == 2 || j == 5) {
+                                        pre.setBackgroundResource(R.drawable.add_down_right);
+                                    } else
+                                        pre.setBackgroundResource(R.drawable.add_down);
+                                } else {
+                                    if (j == 2 || j == 5)
+                                        pre.setBackgroundResource(R.drawable.add_right);
+                                    else
+                                        pre.setBackgroundResource(R.drawable.add_border);
+                                }
                             }
+                            last_id = textView.getId();
                         }
-                        last_id=textView.getId();
                     }
                 });
                 tableRow.addView(textView);
