@@ -54,10 +54,10 @@ public class Game2 extends Activity {
                     @Override
                     public void onClick(View v) {
                         textView.setBackgroundColor(Color.parseColor("#B3E5FC"));
+                        textView.setBackgroundResource(R.drawable.color_bacgr_border);
                         int co=textView.getDrawingCacheBackgroundColor();
                         TextView pre=(TextView)findViewById(last_id);
                         pre.setBackgroundColor(co);
-                        pre.setBackgroundResource(R.drawable.add_border);
                         int i=last_id/10,j=last_id%10;
                         if(i==2||i==5)
                         {
