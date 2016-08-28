@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".Game2" >
         </activity>
+        <activity android:name=".Difficulty" >
+        </activity>
+        <activity android:name=".Help" >
+        </activity>
     </application>
 
 </manifest>
