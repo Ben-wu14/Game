@@ -14,7 +14,7 @@
         android:layout_height="fill_parent"
         android:weightSum="2"
         android:orientation="vertical"
-        android:background="@drawable/wood_2">
+        android:background="@drawable/wood_2_2">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -34,21 +34,25 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="2"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="3"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="4"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="5"/>
         </LinearLayout>
         <LinearLayout
@@ -64,26 +68,31 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="6"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="7"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="8"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="9"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:background="@drawable/button"
                 android:text="C"/>
         </LinearLayout>
     </LinearLayout>
