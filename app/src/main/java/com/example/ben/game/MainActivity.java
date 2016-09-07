@@ -1,6 +1,7 @@
 package com.example.ben.game;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,16 +11,23 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        String name=sp.getString("name","");
+        TextView textUser=(TextView)findViewById(R.id.user);
+        if(name!="")textUser.setText(name);
+        else {
+            Intent log=new Intent(this,MainpageActivity.class);
+            startActivity(log);
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,10 +61,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void button(View view){
-        Intent i=new Intent(this,Game2.class);
-        startActivity(i);
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -77,4 +81,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
