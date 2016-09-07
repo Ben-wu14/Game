@@ -10,9 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void button(View view){
-        Intent i=new Intent(this,Game2.class);
+        Intent i=new Intent(this,MainpageActivity.class);
         startActivity(i);
     }
     @Override
@@ -77,4 +75,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
