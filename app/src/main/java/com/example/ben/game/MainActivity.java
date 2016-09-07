@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
         String name=sp.getString("name","");
         TextView textUser=(TextView)findViewById(R.id.user);
-        if(name!=null)textUser.setText(name);
+        if(name!="")textUser.setText(name);
         else {
             Intent log=new Intent(this,MainpageActivity.class);
             startActivity(log);
