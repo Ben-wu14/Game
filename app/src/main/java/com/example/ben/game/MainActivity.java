@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
         String name=sp.getString("name","");
         TextView textUser=(TextView)findViewById(R.id.user);
         if(name!=null)textUser.setText(name);
-        else textUser.setText("NO User name");
+        else {
+            Intent log=new Intent(this,MainpageActivity.class);
+            startActivity(log);
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
