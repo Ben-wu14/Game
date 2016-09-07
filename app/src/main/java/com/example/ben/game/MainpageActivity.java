@@ -2,12 +2,14 @@ package com.example.ben.game;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainpageActivity extends Activity {
-
+    EditText ed=(EditText)findViewById(R.id.edit);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,10 @@ public class MainpageActivity extends Activity {
         button_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sp=getSharedPreferences("Login",MODE_PRIVATE);
+                SharedPreferences.Editor editor =sp.edit();
+                editor.putString("name",ed.getText().toString());
+                editor.commit();
                 Intent i=new Intent(MainpageActivity.this,MainActivity.class);
                 startActivity(i);
             }
