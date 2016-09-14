@@ -25,7 +25,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/difficulty"
+        android:id="@+id/difficult"
         android:layout_centerHorizontal="true"
         android:textSize="36sp"
         android:layout_below="@id/middle"
