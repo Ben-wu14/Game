@@ -10,7 +10,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-    <TextView android:text="sokudo" android:layout_width="match_parent"
+    <TextView android:text="@string/gameName" android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
         />
@@ -24,24 +24,24 @@
         android:id="@+id/start"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Start"/>
+        android:text="@string/start"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/difficulty"
         android:layout_gravity="center_horizontal"
-        android:text="Difficulty" />
+        android:text="@string/difficulty" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/help"
         android:layout_gravity="center_horizontal"
-        android:text="Help"/>
+        android:text="@string/help"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Settings"
+        android:text="@string/setting"
         android:onClick="button"/>
 </LinearLayout>
 
