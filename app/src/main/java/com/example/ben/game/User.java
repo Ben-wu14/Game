@@ -30,6 +30,7 @@ public class User  {
 
     @Override
     public boolean equals(Object o) {
-        return (name==((User)o).name)&&(password==((User)o).password);
+        User obj=(User)o;
+        return (name.equals(obj.name)&&password.equals(obj.password));
     }
 }
