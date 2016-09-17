@@ -8,11 +8,19 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.ArrayList;
+
 public class MainpageActivity extends Activity {
+    public String currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
+        ArrayList<User>user_data=new ArrayList<>();
+        user_data.add(new User("Ben", "ben1417"));
+        user_data.add(new User("Jerry", "Jerry"));
+        user_data.add(new User("Ten","Ten"));
         ed=(EditText)findViewById(R.id.edit);
         Button button_log=(Button)findViewById(R.id.button_log);
         button_log.setOnClickListener(new View.OnClickListener() {
