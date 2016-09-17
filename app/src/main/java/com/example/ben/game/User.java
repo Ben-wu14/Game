@@ -1,12 +1,19 @@
 package com.example.ben.game;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 /**
  * Created by ben on 2016/9/17.
  */
-public class User {
+public class User  {
     String name;
     String password;
-
+    public User(String n,String p){
+        name=n;
+        password=p;
+    }
     @Override
     public int hashCode() {
         char[]nc=name.toCharArray();
