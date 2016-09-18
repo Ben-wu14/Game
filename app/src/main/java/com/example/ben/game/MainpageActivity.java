@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainpageActivity extends Activity {
-    public String currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +27,15 @@ public class MainpageActivity extends Activity {
         button_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("name", nam.getText().toString());
-                editor.commit();*/
                 if(user_data.contains(new User(nam.getText().toString(),pas.getText().toString()))){
-                    currentUser=nam.getText().toString();
-                Intent i = new Intent(MainpageActivity.this, MainActivity.class);
-                startActivity(i);}
+                    SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("name", nam.getText().toString());
+                    editor.putString("password", pas.getText().toString());
+                    editor.commit();
+                    Intent i = new Intent(MainpageActivity.this, MainActivity.class);
+                    startActivity(i);
+                }
                 else Toast.makeText(MainpageActivity.this,"Your account is not exist or Incorrect passwords",Toast.LENGTH_SHORT).show();
             }
         });
