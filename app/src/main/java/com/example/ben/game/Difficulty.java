@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class Difficulty extends Activity {
-    Intent i=new Intent(Difficulty.this,Game2.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +15,7 @@ public class Difficulty extends Activity {
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i=new Intent(Difficulty.this,Game2.class);
                 startActivity(i);
                 difficulty=1;
             }
@@ -24,6 +24,7 @@ public class Difficulty extends Activity {
         middle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i=new Intent(Difficulty.this,Game2.class);
                 startActivity(i);
                 difficulty=2;
             }
@@ -32,10 +33,12 @@ public class Difficulty extends Activity {
         diff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i=new Intent(Difficulty.this,Game2.class);
                 startActivity(i);
                 difficulty=3;
             }
         });
     }
     public int difficulty=1;
+
 }
