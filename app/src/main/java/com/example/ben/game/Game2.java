@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.ColorRes;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -15,10 +16,29 @@ import android.widget.TextView;
 public class Game2 extends Activity {
     int last_id=0;
     int a[][]=new int[9][9];
+    TextView timerTextView;
+    long startTime =System.currentTimeMillis();;
+    Handler timerHandler = new Handler();
+    //runs without a timer by reposting this handler at the end of the runnable
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+
+            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+            timerHandler.postDelayed(this, 500);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
+        timerTextView = (TextView) findViewById(R.id.timerTextView);
+        timerHandler.postDelayed(timerRunnable, 0);
         int i,j;
         a[0][0]=6;
         a[8][8]=8;
