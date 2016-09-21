@@ -3,12 +3,14 @@ package com.example.ben.game;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ColorRes;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +18,10 @@ import android.widget.TextView;
 public class Game2 extends Activity {
     int last_id=0;
     int a[][]=new int[9][9];
+
+    String hintSwitch="off";
+    ImageView bulb;
+
     TextView timerTextView;
     long startTime =System.currentTimeMillis();;
     Handler timerHandler = new Handler();
@@ -37,8 +43,25 @@ public class Game2 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
+
+        bulb=(ImageView)findViewById(R.id.bulb);
+        bulb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hintSwitch=="off"){
+                    bulb.setBackgroundResource(R.drawable.light_bulb_on);
+                    hintSwitch="on";
+                }else{
+                    bulb.setBackgroundResource(R.drawable.light_bulb_off);
+                    hintSwitch="off";
+                }
+            }
+        });
+
         timerTextView = (TextView) findViewById(R.id.timerTextView);
         timerHandler.postDelayed(timerRunnable, 0);
+
+
         int i,j;
         a[0][0]=6;
         a[8][8]=8;
