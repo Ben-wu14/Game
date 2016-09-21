@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,7 +21,10 @@ public class Game2 extends Activity {
     int a[][]=new int[9][9];
 
     String hintSwitch="off";
+    LinearLayout layout_hint;
     ImageView bulb;
+    ImageView number_hint;
+    int number_of_hint=5;
 
     TextView timerTextView;
     long startTime =System.currentTimeMillis();;
@@ -45,7 +49,9 @@ public class Game2 extends Activity {
         setContentView(R.layout.activity_game2);
 
         bulb=(ImageView)findViewById(R.id.bulb);
-        bulb.setOnClickListener(new View.OnClickListener() {
+        number_hint=(ImageView)findViewById(R.id.number_hint);
+        layout_hint=(LinearLayout)findViewById(R.id.layout_hint);
+        layout_hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (hintSwitch=="off"){
@@ -54,6 +60,19 @@ public class Game2 extends Activity {
                 }else{
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
+                }
+                if(number_of_hint>=1) number_of_hint--;
+                switch (number_of_hint){
+                    case 4:number_hint.setBackgroundResource(R.drawable.four);
+                        break;
+                    case 3:number_hint.setBackgroundResource(R.drawable.three);
+                        break;
+                    case 2:number_hint.setBackgroundResource(R.drawable.two);
+                        break;
+                    case 1:number_hint.setBackgroundResource(R.drawable.one);
+                        break;
+                    case 0:number_hint.setBackgroundResource(R.drawable.number);
+                        break;
                 }
             }
         });
