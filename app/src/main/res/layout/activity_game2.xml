@@ -44,7 +44,10 @@
                 />
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_bulb_off"
+                android:id="@+id/bulb"
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
