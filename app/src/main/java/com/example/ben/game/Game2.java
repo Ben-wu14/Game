@@ -54,12 +54,21 @@ public class Game2 extends Activity {
         layout_hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hintSwitch=="off"){
+                final Handler handler = new Handler();
+                bulb.setBackgroundResource(R.drawable.light_bulb_on);
+                hintSwitch="on";
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bulb.setBackgroundResource(R.drawable.light_bulb_off);
+                        hintSwitch="off";
+                    }
+                }, 1000);
+               /* if (hintSwitch=="off"){
                     bulb.setBackgroundResource(R.drawable.light_bulb_on);
                     hintSwitch="on";
-                }else{
-                    bulb.setBackgroundResource(R.drawable.light_bulb_off);
-                    hintSwitch="off";
+                }else*/{
+
                 }
                 if(number_of_hint>=1) number_of_hint--;
                 switch (number_of_hint){
