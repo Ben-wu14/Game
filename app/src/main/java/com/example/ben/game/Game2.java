@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.ColorRes;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +22,7 @@ public class Game2 extends Activity {
     int a[][]=new int[9][9];
 
     String hintSwitch="off";
+    ViewGroup vs;
     LinearLayout layout_hint;
     ImageView bulb;
     ImageView number_hint;
@@ -49,22 +51,25 @@ public class Game2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
 
+        vs=(ViewGroup)findViewById(R.id.layout_whole);
         bulb=(ImageView)findViewById(R.id.bulb);
         number_hint=(ImageView)findViewById(R.id.number_hint);
         layout_hint=(LinearLayout)findViewById(R.id.layout_hint);
         layout_hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Handler handler = new Handler();
+                /*final Handler handler = new Handler();
                 bulb.setBackgroundResource(R.drawable.light_bulb_on);
                 hintSwitch="on";
+                layout_hint.setEnabled(false);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bulb.setBackgroundResource(R.drawable.light_bulb_off);
                         hintSwitch="off";
+                        layout_hint.setEnabled(true);
                     }
-                }, 1000);
+                }, 1000);*/
                /* if (hintSwitch=="off"){
                     bulb.setBackgroundResource(R.drawable.light_bulb_on);
                     hintSwitch="on";

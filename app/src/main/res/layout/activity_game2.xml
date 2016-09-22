@@ -62,7 +62,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/light_bulb_off"
+                        android:background="@drawable/bulb"
                         android:id="@+id/bulb"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
