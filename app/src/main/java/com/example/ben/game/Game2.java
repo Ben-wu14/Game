@@ -25,6 +25,7 @@ public class Game2 extends Activity {
     ImageView bulb;
     ImageView number_hint;
     int number_of_hint=5;
+    LinearLayout whole;
 
     TextView timerTextView;
     long startTime =System.currentTimeMillis();;
@@ -67,9 +68,10 @@ public class Game2 extends Activity {
                /* if (hintSwitch=="off"){
                     bulb.setBackgroundResource(R.drawable.light_bulb_on);
                     hintSwitch="on";
-                }else*/{
-
-                }
+                }else{
+                    bulb.setBackgroundResource(R.drawable.light_bulb_off);
+                    hintSwitch="off";
+                }*/
                 if(number_of_hint>=1) number_of_hint--;
                 switch (number_of_hint){
                     case 4:number_hint.setBackgroundResource(R.drawable.four);
