@@ -49,6 +49,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/hh"
             android:gravity="center"
+            android:id="@+id/easy"
             android:text="@string/easy"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
