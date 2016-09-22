@@ -17,4 +17,4 @@ android:shape="rectangle">    <!-- 填充的颜色 -->
     android:top="10dp"
     android:right="10dp"
     android:bottom="10dp"        />
-</shape>>
+</shape>
