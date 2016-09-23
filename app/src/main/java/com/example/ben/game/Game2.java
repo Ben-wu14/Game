@@ -22,6 +22,7 @@ public class Game2 extends Activity {
     int last_id=0;
     int a[][]=new int[9][9];
     int difficulty;
+    ArrayData data;
 
     String hintSwitch="off";
     ViewGroup vs;
@@ -79,23 +80,29 @@ public class Game2 extends Activity {
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
                 }*/
-                if (number_of_hint >= 1) number_of_hint--;
-                switch (number_of_hint) {
-                    case 4:
-                        number_hint.setBackgroundResource(R.drawable.four);
-                        break;
-                    case 3:
-                        number_hint.setBackgroundResource(R.drawable.three);
-                        break;
-                    case 2:
-                        number_hint.setBackgroundResource(R.drawable.two);
-                        break;
-                    case 1:
-                        number_hint.setBackgroundResource(R.drawable.one);
-                        break;
-                    case 0:
-                        number_hint.setBackgroundResource(R.drawable.number);
-                        break;
+                if (number_of_hint >= 1) {
+                    TextView pre = (TextView) findViewById(last_id);
+                    int answer=data.getAnser(last_id/10,last_id%10);
+                    pre.setText(""+answer);
+
+                    number_of_hint--;
+                    switch (number_of_hint) {
+                        case 4:
+                            number_hint.setBackgroundResource(R.drawable.four);
+                            break;
+                        case 3:
+                            number_hint.setBackgroundResource(R.drawable.three);
+                            break;
+                        case 2:
+                            number_hint.setBackgroundResource(R.drawable.two);
+                            break;
+                        case 1:
+                            number_hint.setBackgroundResource(R.drawable.one);
+                            break;
+                        case 0:
+                            number_hint.setBackgroundResource(R.drawable.number);
+                            break;
+                    }
                 }
             }
         });
@@ -106,7 +113,7 @@ public class Game2 extends Activity {
 
         int i,j;
 
-        ArrayData data=new ArrayData();//create a class to create new data
+        data=new ArrayData();//create a class to create new data
         data.Inital();//Initial the answer
         SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
         difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
