@@ -47,7 +47,7 @@
         android:textSize="20sp"
         android:background="@drawable/pink"
         android:textColor="@android:color/white"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:layout_gravity="center"/>
     <Button
@@ -93,27 +93,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:text="made by"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
         <ImageView
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="70dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ben"/>
         <ImageView
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="30dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ten"/>
         <ImageView
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="30dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
