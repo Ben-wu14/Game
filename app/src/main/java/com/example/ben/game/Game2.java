@@ -20,6 +20,7 @@ import android.widget.TextView;
 public class Game2 extends Activity {
     int last_id=0;
     int a[][]=new int[9][9];
+    int changed=0;
 
     String hintSwitch="off";
     ViewGroup vs;
@@ -41,6 +42,9 @@ public class Game2 extends Activity {
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
+
+            if(last_id!=0&&changed!=0)layout_hint.setEnabled(true);
+            else layout_hint.setEnabled(false);
 
             timerTextView.setText(String.format("%d:%02d", minutes, seconds));
             timerHandler.postDelayed(this, 500);
@@ -77,18 +81,26 @@ public class Game2 extends Activity {
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
                 }*/
-                if(number_of_hint>=1) number_of_hint--;
-                switch (number_of_hint){
-                    case 4:number_hint.setBackgroundResource(R.drawable.four);
-                        break;
-                    case 3:number_hint.setBackgroundResource(R.drawable.three);
-                        break;
-                    case 2:number_hint.setBackgroundResource(R.drawable.two);
-                        break;
-                    case 1:number_hint.setBackgroundResource(R.drawable.one);
-                        break;
-                    case 0:number_hint.setBackgroundResource(R.drawable.number);
-                        break;
+                if(number_of_hint>=1) {
+                    number_of_hint--;
+                    switch (number_of_hint) {
+                        case 4:
+                            number_hint.setBackgroundResource(R.drawable.four);
+                            break;
+                        case 3:
+                            number_hint.setBackgroundResource(R.drawable.three);
+                            break;
+                        case 2:
+                            number_hint.setBackgroundResource(R.drawable.two);
+                            break;
+                        case 1:
+                            number_hint.setBackgroundResource(R.drawable.one);
+                            break;
+                        case 0:
+                            number_hint.setBackgroundResource(R.drawable.number);
+                            layout_hint.setEnabled(false);
+                            break;
+                    }
                 }
             }
         });
@@ -140,6 +152,7 @@ public class Game2 extends Activity {
                             TextView pre = (TextView) findViewById(last_id);
                             if (pre != textView) {
                                 int i = last_id / 10, j = last_id % 10;
+                                changed=1;
                                 if (i == 2 || i == 5) {
                                     if (j == 2 || j == 5) {
                                         pre.setBackgroundResource(R.drawable.add_down_right);
@@ -151,7 +164,7 @@ public class Game2 extends Activity {
                                     else
                                         pre.setBackgroundResource(R.drawable.add_border);
                                 }
-                            }
+                            }else changed=0;
                             last_id = textView.getId();
                         }
                     }
