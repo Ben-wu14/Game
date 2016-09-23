@@ -130,6 +130,17 @@ public class ArrayData {
             }
         }
     }
-    public int[][] getAnser(){return a;}
-    public int[][] getQuestion(){return b;}
+    public int getAnser(int i,int j){
+            return a[i-1][j-1];
+        }
+    public int[][] getQuestion(){
+        int i,j;
+        int [][] s=new int[9][9];
+        for (i=1;i<10;i++){
+            for (j=1;j<10;j++){
+                s[i-1][j-1]=b[i][j];
+            }
+        }
+        return s;
+    }
 }
