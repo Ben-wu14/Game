@@ -1,6 +1,7 @@
 package com.example.ben.game;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 public class Game2 extends Activity {
     int last_id=0;
     int a[][]=new int[9][9];
+    int difficulty;
 
     String hintSwitch="off";
     ViewGroup vs;
@@ -77,17 +79,22 @@ public class Game2 extends Activity {
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
                 }*/
-                if(number_of_hint>=1) number_of_hint--;
-                switch (number_of_hint){
-                    case 4:number_hint.setBackgroundResource(R.drawable.four);
+                if (number_of_hint >= 1) number_of_hint--;
+                switch (number_of_hint) {
+                    case 4:
+                        number_hint.setBackgroundResource(R.drawable.four);
                         break;
-                    case 3:number_hint.setBackgroundResource(R.drawable.three);
+                    case 3:
+                        number_hint.setBackgroundResource(R.drawable.three);
                         break;
-                    case 2:number_hint.setBackgroundResource(R.drawable.two);
+                    case 2:
+                        number_hint.setBackgroundResource(R.drawable.two);
                         break;
-                    case 1:number_hint.setBackgroundResource(R.drawable.one);
+                    case 1:
+                        number_hint.setBackgroundResource(R.drawable.one);
                         break;
-                    case 0:number_hint.setBackgroundResource(R.drawable.number);
+                    case 0:
+                        number_hint.setBackgroundResource(R.drawable.number);
                         break;
                 }
             }
@@ -98,8 +105,14 @@ public class Game2 extends Activity {
 
 
         int i,j;
-        a[0][0]=6;
-        a[8][8]=8;
+
+        ArrayData data=new ArrayData();//create a class to create new data
+        data.Inital();//Initial the answer
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
+        difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
+        data.SetDifficulty(difficulty);//Initial the question
+        a=data.getQuestion();//get the question
+        //intial places >>>>>>>>>>>>>>>>>
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels/9;//1/9width of the screen
