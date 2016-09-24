@@ -23,6 +23,7 @@ public class Game2 extends Activity {
     int a[][]=new int[9][9];
     int difficulty;
     ArrayData data;
+    int change=0;
 
     String hintSwitch="off";
     ViewGroup vs;
@@ -80,9 +81,10 @@ public class Game2 extends Activity {
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
                 }*/
-                if (number_of_hint >= 1) {
+                if (number_of_hint >= 1&&change==1) {
                     TextView pre = (TextView) findViewById(last_id);
                     int answer=data.getAnser(last_id/10,last_id%10);
+                    change=0;
                     pre.setText(""+answer);
 
                     number_of_hint--;
@@ -159,6 +161,7 @@ public class Game2 extends Activity {
                             textView.setBackgroundResource(R.drawable.color_bacgr_border);
                             TextView pre = (TextView) findViewById(last_id);
                             if (pre != textView) {
+                                change=1;
                                 int i = last_id / 10, j = last_id % 10;
                                 if (i == 2 || i == 5) {
                                     if (j == 2 || j == 5) {
