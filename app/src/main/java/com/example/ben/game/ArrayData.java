@@ -131,7 +131,7 @@ public class ArrayData {
         }
     }
     public int getAnser(int i,int j){
-            return a[i-1][j-1];
+            return a[cur[i+1]][col[j+1]];
         }
     public int[][] getQuestion(){
         int i,j;
