@@ -18,9 +18,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class Game2 extends Activity {
     int last_id=0;
     int a[][]=new int[9][9];
+    int userAnswer[][]=new int[9][9];
     int difficulty;
     ArrayData data;
     int change=0;
@@ -121,6 +124,11 @@ public class Game2 extends Activity {
         difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
         data.SetDifficulty(difficulty);//Initial the question
         a=data.getQuestion();//get the question
+        for (i=0;i<9;i++){
+            for(j=0;j<9;j++){
+                userAnswer[i][j]=a[i][j];
+            }
+        }//copy the question to the user answer array
         //intial places >>>>>>>>>>>>>>>>>
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -187,61 +195,118 @@ public class Game2 extends Activity {
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
+        if(a[i][j]==0){
             t.setText("1");
+            userAnswer[i][j]=1;
+            checkMistake();
+        }
+
     }
     public void buttonP2(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("2");
+        if(a[i][j]==0){
+            t.setText("2");
+            userAnswer[i][j]=2;
+            checkMistake();
+        };
     }
     public void buttonP3(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("3");
+        if(a[i][j]==0){
+            t.setText("3");
+            userAnswer[i][j]=3;
+            checkMistake();
+        }
     }
     public void buttonP4(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("4");
+        if(a[i][j]==0){
+            t.setText("4");
+            userAnswer[i][j]=4;
+            checkMistake();
+        }
     }
     public void buttonP5(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("5");
+        if(a[i][j]==0){
+            t.setText("5");
+            userAnswer[i][j]=5;
+            checkMistake();
+        }
     }
     public void buttonP6(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("6");
+        if(a[i][j]==0){
+            t.setText("6");
+            userAnswer[i][j]=6;
+            checkMistake();
+        }
     }
     public void buttonP7(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("7");
+        if(a[i][j]==0){
+            t.setText("7");
+            userAnswer[i][j]=7;
+            checkMistake();
+        }
     }
     public void buttonP8(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("8");
+        if(a[i][j]==0){
+            t.setText("8");
+            userAnswer[i][j]=8;
+            checkMistake();
+        }
     }
     public void buttonP9(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("9");
+        if(a[i][j]==0){
+            t.setText("9");
+            userAnswer[i][j]=9;
+            checkMistake();
+        }
     }
     public void buttonPc(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("");
+        if(a[i][j]==0){
+            t.setText("");
+            userAnswer[i][j]=0;
+        }
+    }
+    public void checkMistake(){
+        int i=last_id/10;
+        int j=last_id%10;
+        int k;
+        int w;
+        for(k=0;k<9;k++){
+            TextView test=(TextView)findViewById(i*10+k);
+            if(userAnswer[i][k]==userAnswer[i][j]&&k!=j){
+                test.setTextColor(Color.RED);
+            }else test.setTextColor(Color.BLACK);
+        }
+        for(k=0;k<9;k++){
+            TextView test=(TextView)findViewById(k*10+j);
+            if(userAnswer[k][j]==userAnswer[i][j]&&k!=i){
+                test.setTextColor(Color.RED);
+            }else test.setTextColor(Color.BLACK);
+        }
+        for (k=j/3*3;k<j/3*3+3;k++){
+            for (w=i/3*3;w<i/3*3+3;w++){
+                TextView test=(TextView)findViewById(w*10+k);
+                if(userAnswer[w][k]==userAnswer[i][j]&&(k!=j||w!=i)){
+                    test.setTextColor(Color.RED);
+                }else test.setTextColor(Color.BLACK);
+            }
+        }
+
     }
 }
