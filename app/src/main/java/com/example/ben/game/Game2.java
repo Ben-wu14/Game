@@ -144,6 +144,7 @@ public class Game2 extends Activity {
                 else textView.setText(""+a[i][j]);
                 textView.setId(i * 10 + j);
                 textView.setWidth(width);
+                textView.setTextColor(Color.GRAY);
                 textView.setTextSize(width / 5);
                 if(a[i][j]==0)
                     textView.setTextColor(Color.parseColor("#000000"));
@@ -313,14 +314,16 @@ public class Game2 extends Activity {
             if(userAnswer[i][k]==number&&k!=j){
                 test.setTextColor(Color.RED);
                 froze=1;
-            }else test.setTextColor(Color.BLACK);
+            }else if(a[i][k]==0) test.setTextColor(Color.BLACK);
+            else test.setTextColor(Color.GRAY);
         }
         for(k=0;k<9;k++){
             TextView test=(TextView)findViewById(k*10+j);
             if(userAnswer[k][j]==number&&k!=i){
                 test.setTextColor(Color.RED);
                 froze=1;
-            }else test.setTextColor(Color.BLACK);
+            }else  if(a[k][j]==0) test.setTextColor(Color.BLACK);
+            else test.setTextColor(Color.GRAY);
         }
         for (k=j/3*3;k<j/3*3+3;k++){
             for (w=i/3*3;w<i/3*3+3;w++){
@@ -328,7 +331,8 @@ public class Game2 extends Activity {
                 if(userAnswer[w][k]==number&&(k!=j||w!=i)){
                     test.setTextColor(Color.RED);
                     froze=1;
-                }else test.setTextColor(Color.BLACK);
+                }else  if(a[w][k]==0) test.setTextColor(Color.BLACK);
+                else test.setTextColor(Color.GRAY);
             }
         }
         TextView test=(TextView)findViewById(last_id);
