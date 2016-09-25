@@ -299,6 +299,7 @@ public class Game2 extends Activity {
         if(a[i][j]==0){
             t.setText("");
             userAnswer[i][j]=0;
+            froze=0;
             checkMistake(-1);
         }
     }
