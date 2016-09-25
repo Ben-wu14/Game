@@ -21,13 +21,13 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class Game2 extends Activity {
-    int last_id=0;
-    int a[][]=new int[9][9];
-    int userAnswer[][]=new int[9][9];
-    int difficulty;
-    ArrayData data;
-    int change=0;
-    int froze=0;
+    int last_id=0;//the id of the latest clicked view
+    int a[][]=new int[9][9];//question array
+    int userAnswer[][]=new int[9][9];//answer array
+    int difficulty;//the difficulty of the game
+    ArrayData data;//object that generate the array
+    int change=0;//identify whether the hint position is changed
+    int froze=0;//used when the mistake occur and need to froze the screen
 
     String hintSwitch="off";
     ViewGroup vs;
@@ -331,6 +331,9 @@ public class Game2 extends Activity {
                 }else test.setTextColor(Color.BLACK);
             }
         }
-
+        TextView test=(TextView)findViewById(last_id);
+        if(froze==1){
+            test.setTextColor(Color.RED);
+        }else test.setTextColor(Color.BLACK);
     }
 }
