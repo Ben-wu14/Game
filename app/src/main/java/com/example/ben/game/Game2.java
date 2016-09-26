@@ -1,6 +1,7 @@
 package com.example.ben.game;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -17,10 +18,16 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class Game2 extends Activity {
-    int last_id=0;
-    int a[][]=new int[9][9];
-    int changed=0;
+    int last_id=0;//the id of the latest clicked view
+    int a[][]=new int[9][9];//question array
+    int userAnswer[][]=new int[9][9];//answer array
+    int difficulty;//the difficulty of the game
+    ArrayData data;//object that generate the array
+    int change=0;//identify whether the hint position is changed
+    int froze=0;//used when the mistake occur and need to froze the screen
 
     String hintSwitch="off";
     ViewGroup vs;
@@ -81,7 +88,12 @@ public class Game2 extends Activity {
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
                 }*/
-                if(number_of_hint>=1) {
+                if (number_of_hint >= 1&&change==1) {
+                    TextView pre = (TextView) findViewById(last_id);
+                    int answer=data.getAnser(last_id/10,last_id%10);
+                    change=0;
+                    pre.setText(""+answer);
+
                     number_of_hint--;
                     switch (number_of_hint) {
                         case 4:
@@ -98,7 +110,6 @@ public class Game2 extends Activity {
                             break;
                         case 0:
                             number_hint.setBackgroundResource(R.drawable.number);
-                            layout_hint.setEnabled(false);
                             break;
                     }
                 }
@@ -110,8 +121,19 @@ public class Game2 extends Activity {
 
 
         int i,j;
-        a[0][0]=6;
-        a[8][8]=8;
+
+        data=new ArrayData();//create a class to create new data
+        data.Inital();//Initial the answer
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
+        difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
+        data.SetDifficulty(difficulty);//Initial the question
+        a=data.getQuestion();//get the question
+        for (i=0;i<9;i++){
+            for(j=0;j<9;j++){
+                userAnswer[i][j]=a[i][j];
+            }
+        }//copy the question to the user answer array
+        //intial places >>>>>>>>>>>>>>>>>
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels/9;//1/9width of the screen
@@ -125,6 +147,7 @@ public class Game2 extends Activity {
                 else textView.setText(""+a[i][j]);
                 textView.setId(i * 10 + j);
                 textView.setWidth(width);
+                textView.setTextColor(Color.GRAY);
                 textView.setTextSize(width / 5);
                 if(a[i][j]==0)
                     textView.setTextColor(Color.parseColor("#000000"));
@@ -147,10 +170,11 @@ public class Game2 extends Activity {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(a[textView.getId()/10][textView.getId()%10]==0) {
+                        if(a[textView.getId()/10][textView.getId()%10]==0&&froze==0) {
                             textView.setBackgroundResource(R.drawable.color_bacgr_border);
                             TextView pre = (TextView) findViewById(last_id);
                             if (pre != textView) {
+                                change=1;
                                 int i = last_id / 10, j = last_id % 10;
                                 changed=1;
                                 if (i == 2 || i == 5) {
@@ -177,61 +201,147 @@ public class Game2 extends Activity {
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
+        if(a[i][j]==0&&(!(t.getText().toString().equals("1")))){
             t.setText("1");
+            userAnswer[i][j]=1;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(1);
+        }
+
     }
     public void buttonP2(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("2");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("2")))){
+            t.setText("2");
+            userAnswer[i][j]=2;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(2);
+        };
     }
     public void buttonP3(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("3");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("3")))){
+            t.setText("3");
+            userAnswer[i][j]=3;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(3);
+        }
     }
     public void buttonP4(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("4");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("4")))){
+            t.setText("4");
+            userAnswer[i][j]=4;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(4);
+        }
     }
     public void buttonP5(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("5");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("5")))){
+            t.setText("5");
+            userAnswer[i][j]=5;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(5);
+        }
     }
     public void buttonP6(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("6");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("6")))){
+            t.setText("6");
+            userAnswer[i][j]=6;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(6);
+        }
     }
     public void buttonP7(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("7");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("7")))){
+            t.setText("7");
+            userAnswer[i][j]=7;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(7);
+        }
     }
     public void buttonP8(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("8");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("8")))){
+            t.setText("8");
+            userAnswer[i][j]=8;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(8);
+        }
     }
     public void buttonP9(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("9");
+        if(a[i][j]==0&&(!(t.getText().toString().equals("9")))){
+            t.setText("9");
+            userAnswer[i][j]=9;
+            checkMistake(-1);
+            froze=0;
+            checkMistake(9);
+        }
     }
     public void buttonPc(View view){
         TextView t=(TextView)findViewById(last_id);
         int i=last_id/10,j=last_id%10;
-        if(a[i][j]==0)
-        t.setText("");
+        if(a[i][j]==0){
+            t.setText("");
+            userAnswer[i][j]=0;
+            froze=0;
+            checkMistake(-1);
+        }
+    }
+    public void checkMistake(int number){
+        int i=last_id/10;
+        int j=last_id%10;
+        int k;
+        int w;
+        for(k=0;k<9;k++){
+            TextView test=(TextView)findViewById(i*10+k);
+            if(userAnswer[i][k]==number&&k!=j){
+                test.setTextColor(Color.RED);
+                froze=1;
+            }else if(a[i][k]==0) test.setTextColor(Color.BLACK);
+            else test.setTextColor(Color.GRAY);
+        }
+        for(k=0;k<9;k++){
+            TextView test=(TextView)findViewById(k*10+j);
+            if(userAnswer[k][j]==number&&k!=i){
+                test.setTextColor(Color.RED);
+                froze=1;
+            }else  if(a[k][j]==0) test.setTextColor(Color.BLACK);
+            else test.setTextColor(Color.GRAY);
+        }
+        for (k=j/3*3;k<j/3*3+3;k++){
+            for (w=i/3*3;w<i/3*3+3;w++){
+                TextView test=(TextView)findViewById(w*10+k);
+                if(userAnswer[w][k]==number&&(k!=j||w!=i)){
+                    test.setTextColor(Color.RED);
+                    froze=1;
+                }else  if(a[w][k]==0) test.setTextColor(Color.BLACK);
+                else test.setTextColor(Color.GRAY);
+            }
+        }
+        TextView test=(TextView)findViewById(last_id);
+        if(froze==1){
+            test.setTextColor(Color.RED);
+        }else test.setTextColor(Color.BLACK);
     }
 }

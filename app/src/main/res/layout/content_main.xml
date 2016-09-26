@@ -10,38 +10,112 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-    <TextView android:text="@string/gameName" android:layout_width="match_parent"
-        android:gravity="center"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="@string/gameName"
+        android:textColor="#336666"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         />
+    <View
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#3D7876" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/user" />
+        android:text="name"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:textColor="#3D7876"
+        android:id="@+id/user"
+        />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:textAllCaps="true"
         android:id="@+id/start"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/start"/>
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:background="@drawable/pink"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:layout_gravity="center"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:text="@string/difficulty"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="20sp"
         android:id="@+id/difficulty"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/difficulty" />
+        android:background="@drawable/green"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/help"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/help"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:text="@string/setting"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:background="@drawable/color"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:onClick="button"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/help"
+        android:id="@+id/help"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:background="@drawable/shape"
+
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:text="made by"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ben"/>
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ten"/>
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/an"/>
+    </LinearLayout>
 </LinearLayout>
 
