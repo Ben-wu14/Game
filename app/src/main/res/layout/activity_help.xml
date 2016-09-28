@@ -83,16 +83,14 @@
             android:textSize="18dp"
             android:text="The predefined numbers can not be changed."/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="300dp"
-
+            android:layout_alignParentRight="true"
             android:src="@drawable/lp"/>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
