@@ -13,11 +13,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainpageActivity extends Activity {
+    ArrayList<User>user_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
-        final ArrayList<User>user_data=new ArrayList<>();
+        user_data=new ArrayList<>();
         user_data.add(new User("Ben", "ben1417"));
         user_data.add(new User("Jerry", "Jerry"));
         user_data.add(new User("Ten","Ten"));
@@ -37,6 +38,14 @@ public class MainpageActivity extends Activity {
                     startActivity(i);
                 }
                 else Toast.makeText(MainpageActivity.this,"Your account is not exist or Incorrect passwords",Toast.LENGTH_SHORT).show();
+            }
+        });
+        Button button_sign=(Button)findViewById(R.id.sign_in);
+        button_sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainpageActivity.this,Register_Activity.class);
+                startActivity(i);
             }
         });
     }
