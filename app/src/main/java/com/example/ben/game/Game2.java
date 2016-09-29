@@ -93,7 +93,7 @@ public class Game2 extends Activity {
                     int answer=data.getAnser(last_id/10,last_id%10);
                     changed=0;
                     pre.setText(""+answer);
-
+                    userAnswer[last_id/10][last_id%10]=answer;
                     number_of_hint--;
                     switch (number_of_hint) {
                         case 4:
