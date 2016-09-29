@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class MainpageActivity extends Activity {
     ArrayList<User>user_data;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +29,8 @@ public class MainpageActivity extends Activity {
         button_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(user_data.contains(new User(nam.getText().toString(),pas.getText().toString()))){
-                    SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+                sp = getSharedPreferences("Login", MODE_PRIVATE);
+                if(sp.contains(nam.getText().toString())&&sp.getString(nam.getText().toString()+"'s password","")==pas.getText().toString()){
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("name", nam.getText().toString());
                     editor.putString("password", pas.getText().toString());
