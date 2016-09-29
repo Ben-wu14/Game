@@ -21,10 +21,6 @@ public class MainpageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
-        user_data=new ArrayList<>();
-        user_data.add(new User("Ben", "ben1417"));
-        user_data.add(new User("Jerry", "Jerry"));
-        user_data.add(new User("Ten","Ten"));
         nam=(EditText)findViewById(R.id.edit);
         pas=(EditText)findViewById(R.id.password);
         Button button_log=(Button)findViewById(R.id.button_log);

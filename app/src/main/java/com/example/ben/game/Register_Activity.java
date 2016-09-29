@@ -35,6 +35,8 @@ public class Register_Activity extends Activity {
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString(userName, userName);
                     editor.putString(userName + "'s password", userPass1);
+                    editor.putString("name", userName);
+                    editor.putString("password",userPass1);
                     editor.commit();
                     Intent i=new Intent(Register_Activity.this,MainActivity.class);
                     startActivity(i);
