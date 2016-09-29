@@ -94,6 +94,8 @@ public class Game2 extends Activity {
                     changed=0;
                     pre.setText(""+answer);
                     userAnswer[last_id/10][last_id%10]=answer;
+                    checkMistake(answer);
+                    froze=0;
                     number_of_hint--;
                     switch (number_of_hint) {
                         case 4:
