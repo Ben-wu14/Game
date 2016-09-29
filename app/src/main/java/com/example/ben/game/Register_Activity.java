@@ -13,22 +13,25 @@ public class Register_Activity extends Activity {
     String userName;
     String userPass1;
     String userPass2;
+    private EditText nam;
+    private EditText pas1;
+    private EditText pas2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Button join= (Button)findViewById(R.id.button_join);
-        EditText us=(EditText)findViewById(R.id.new_user_name);
-        userName=us.getText().toString();
-        us=(EditText)findViewById(R.id.new_password);
-        userPass1=us.getText().toString();
-        us=(EditText)findViewById(R.id.new_password_2);
-        userPass2=us.getText().toString();
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nam=(EditText)findViewById(R.id.new_user_name);
+                userName=nam.getText().toString();
+                pas1=(EditText)findViewById(R.id.new_password);
+                userPass1=pas1.getText().toString();
+                pas2=(EditText)findViewById(R.id.new_password_2);
+                userPass2=pas2.getText().toString();
                 if (userPass1.equals(userPass2)) {
-                    SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+                    SharedPreferences sp = getSharedPreferences("Login", MODE_APPEND);
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString(userName, userName);
                     editor.putString(userName + "'s password", userPass1);
