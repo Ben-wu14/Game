@@ -10,135 +10,122 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:text="DIFFICULTY"
         android:textColor="#336666"
-        android:textSize="35sp"
         android:textStyle="bold"
+        android:textSize="35sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         />
     <View
         android:layout_width="100dp"
-        android:layout_height="1dp"
         android:layout_gravity="center"
+        android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:background="#3D7876" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:text="Please select the difficulty level"
-        android:textColor="#4F9D9D"
+        android:layout_marginLeft="40dp"
+        android:textStyle="bold"
         android:textSize="18dp"
-        android:textStyle="bold"/>
+        android:textColor="#4F9D9D"
+        android:text="Please select the difficulty level"/>
     <View
         android:layout_width="260dp"
-        android:layout_height="1dp"
         android:layout_marginLeft="40dp"
+        android:layout_height="1dp"
         android:layout_marginTop="1dp"
         android:background="#CC0000" />
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/easy"/>
         <Button
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/hh"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
+            android:background="@drawable/hh"
             android:id="@+id/easy"
             android:text="@string/easy"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/amen"/>
+            android:elevation="0dp" />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/normal"/>
         <Button
+            android:layout_width="180dp"
             android:id="@+id/middle"
-            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
             android:background="@drawable/general"
+            android:textColor="#FFA500"
+            android:layout_marginLeft="15dp"
+            android:textSize="20dp"
             android:textAllCaps="true"
-            android:text="@string/middle"
-            android:textSize="20dp"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/amen"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/amen"/>
+            android:text="@string/middle" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/difficult2"/>
         <Button
+            android:layout_marginLeft="15dp"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/difficult"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="#6B8e23"
+            android:layout_gravity="center"
+            android:background="@drawable/sad"
             android:text="@string/difficult"
             android:textAllCaps="true"
-            android:id="@+id/difficult"
-            android:textSize="20dp"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/amen"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/amen"/>
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/amen"/>
+            android:id="@+id/difficult" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
-        android:text="If you are playing for the first time , please choose the easy level."
+        android:layout_marginLeft="50dp"
         android:textColor="#336666"
+        android:layout_marginRight="30dp"
         android:textSize="18dp"
+        android:text="If you are playing for the first time , it will be better to choose the easy level."
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
-        android:text="Hope you will enjoy it :)"
+        android:layout_marginLeft="50dp"
         android:textColor="#336666"
+        android:layout_marginRight="30dp"
         android:textSize="18dp"
+        android:text="Hope you will enjoy it :)"
         />
 </LinearLayout>

@@ -26,6 +26,12 @@
         </activity>
         <activity android:name=".MainpageActivity" >
         </activity>
+        <activity android:name=".SettingActivity" >
+        </activity>
+        <activity android:name=".PasswordActivity" >
+        </activity>
+        <activity android:name=".Register_Activity" >
+        </activity>
     </application>
 
 </manifest>
