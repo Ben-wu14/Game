@@ -26,7 +26,7 @@ public class Game2 extends Activity {
     int userAnswer[][]=new int[9][9];//answer array
     int difficulty;//the difficulty of the game
     ArrayData data;//object that generate the array
-    int change=0;//identify whether the hint position is changed
+    int changed=0;//identify whether the hint position is changed
     int froze=0;//used when the mistake occur and need to froze the screen
 
     String hintSwitch="off";
@@ -49,6 +49,9 @@ public class Game2 extends Activity {
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
+
+            if(last_id!=0&&changed!=0)layout_hint.setEnabled(true);
+            else layout_hint.setEnabled(false);
 
             timerTextView.setText(String.format("%d:%02d", minutes, seconds));
             timerHandler.postDelayed(this, 500);
@@ -85,12 +88,14 @@ public class Game2 extends Activity {
                     bulb.setBackgroundResource(R.drawable.light_bulb_off);
                     hintSwitch="off";
                 }*/
-                if (number_of_hint >= 1&&change==1) {
+                if (number_of_hint >= 1&&changed==1) {
                     TextView pre = (TextView) findViewById(last_id);
                     int answer=data.getAnser(last_id/10,last_id%10);
-                    change=0;
+                    changed=0;
                     pre.setText(""+answer);
-
+                    userAnswer[last_id/10][last_id%10]=answer;
+                    checkMistake(answer);
+                    froze=0;
                     number_of_hint--;
                     switch (number_of_hint) {
                         case 4:
@@ -171,8 +176,9 @@ public class Game2 extends Activity {
                             textView.setBackgroundResource(R.drawable.color_bacgr_border);
                             TextView pre = (TextView) findViewById(last_id);
                             if (pre != textView) {
-                                change=1;
+                                changed=1;
                                 int i = last_id / 10, j = last_id % 10;
+                                changed=1;
                                 if (i == 2 || i == 5) {
                                     if (j == 2 || j == 5) {
                                         pre.setBackgroundResource(R.drawable.add_down_right);
@@ -184,7 +190,7 @@ public class Game2 extends Activity {
                                     else
                                         pre.setBackgroundResource(R.drawable.add_border);
                                 }
-                            }
+                            }else changed=0;
                             last_id = textView.getId();
                         }
                     }
