@@ -14,22 +14,16 @@
         android:textSize="36sp"
         android:text="Register"/>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
+        style="@style/register_editText"
         android:id="@+id/new_user_name"
         android:hint="New user name"/>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
+        style="@style/register_editText"
         android:inputType="textPassword"
         android:id="@+id/new_password"
         android:hint="New password"/>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/register_editText"
         android:inputType="textPassword"
         android:id="@+id/new_password_2"
         android:hint="Type in the password again"/>
