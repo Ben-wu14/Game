@@ -116,15 +116,12 @@ public class ArrayData {
                 b[i][j]=a[cur[i]][col[j]];
         if (difficu<=3) {//每行随机去掉3个
             for (int i=1;i<10;i++){
-                //System.out.print("Helloww\n");
                 int cnt=3+difficu;
                 for (int j=1;j<10;j++)
                     while (cnt>0){
-                        //System.out.print("Helloww\n");
                         int ran = ra.nextInt(9)+1;
                         if (b[i][ran]!=0) {
                             b[i][ran]=0;cnt--;
-                            System.out.print("ggw\n");
                         }
                     }
             }

@@ -29,6 +29,8 @@ public class Game2 extends Activity {
     int changed=0;//identify whether the hint position is changed
     int froze=0;//used when the mistake occur and need to froze the screen
 
+    int total_blank;
+
     String hintSwitch="off";
     ViewGroup vs;
     LinearLayout layout_hint;
@@ -97,6 +99,9 @@ public class Game2 extends Activity {
                     checkMistake(answer);
                     froze=0;
                     number_of_hint--;
+                    if(userAnswer[i][j]==0){
+                        total_blank--;
+                    }
                     switch (number_of_hint) {
                         case 4:
                             number_hint.setBackgroundResource(R.drawable.four);
@@ -129,6 +134,7 @@ public class Game2 extends Activity {
         SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
         difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
         data.SetDifficulty(difficulty);//Initial the question
+        total_blank=9*(difficulty+1);
         a=data.getQuestion();//get the question
         for (i=0;i<9;i++){
             for(j=0;j<9;j++){
@@ -205,6 +211,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("1")))){
             t.setText("1");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=1;
             checkMistake(-1);
             froze=0;
@@ -217,6 +226,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("2")))){
             t.setText("2");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=2;
             checkMistake(-1);
             froze=0;
@@ -228,6 +240,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("3")))){
             t.setText("3");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=3;
             checkMistake(-1);
             froze=0;
@@ -239,6 +254,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("4")))){
             t.setText("4");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=4;
             checkMistake(-1);
             froze=0;
@@ -250,6 +268,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("5")))){
             t.setText("5");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=5;
             checkMistake(-1);
             froze=0;
@@ -261,6 +282,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("6")))){
             t.setText("6");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=6;
             checkMistake(-1);
             froze=0;
@@ -272,6 +296,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("7")))){
             t.setText("7");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=7;
             checkMistake(-1);
             froze=0;
@@ -283,6 +310,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("8")))){
             t.setText("8");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=8;
             checkMistake(-1);
             froze=0;
@@ -294,6 +324,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0&&(!(t.getText().toString().equals("9")))){
             t.setText("9");
+            if(userAnswer[i][j]==0){
+                total_blank--;
+            }
             userAnswer[i][j]=9;
             checkMistake(-1);
             froze=0;
@@ -305,6 +338,7 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0){
             t.setText("");
+            total_blank++;
             userAnswer[i][j]=0;
             froze=0;
             checkMistake(-1);
@@ -345,5 +379,8 @@ public class Game2 extends Activity {
         if(froze==1){
             test.setTextColor(Color.RED);
         }else test.setTextColor(Color.BLACK);
+    }
+    public boolean complete(){
+        return froze==0&&total_blank==0;
     }
 }
