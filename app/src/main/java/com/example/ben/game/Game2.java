@@ -95,13 +95,13 @@ public class Game2 extends Activity {
                     int answer=data.getAnser(last_id/10,last_id%10);
                     changed=0;
                     pre.setText(""+answer);
+                    if(userAnswer[last_id/10][last_id%10]==0){
+                        total_blank--;
+                    }
                     userAnswer[last_id/10][last_id%10]=answer;
                     checkMistake(answer);
                     froze=0;
                     number_of_hint--;
-                    if(userAnswer[last_id/10][last_id%10]==0){
-                        total_blank--;
-                    }
                     switch (number_of_hint) {
                         case 4:
                             number_hint.setBackgroundResource(R.drawable.four);
