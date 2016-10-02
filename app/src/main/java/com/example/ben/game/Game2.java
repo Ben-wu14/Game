@@ -23,6 +23,7 @@ import org.w3c.dom.Text;
 public class Game2 extends Activity {
     int last_id=0;//the id of the latest clicked view
     int a[][]=new int[9][9];//question array
+    int b[][]=new int[9][9];//correct answer array
     int userAnswer[][]=new int[9][9];//answer array
     int difficulty;//the difficulty of the game
     ArrayData data;//object that generate the array
@@ -70,25 +71,6 @@ public class Game2 extends Activity {
         layout_hint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*final Handler handler = new Handler();
-                bulb.setBackgroundResource(R.drawable.light_bulb_on);
-                hintSwitch="on";
-                layout_hint.setEnabled(false);
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bulb.setBackgroundResource(R.drawable.light_bulb_off);
-                        hintSwitch="off";
-                        layout_hint.setEnabled(true);
-                    }
-                }, 1000);*/
-               /* if (hintSwitch=="off"){
-                    bulb.setBackgroundResource(R.drawable.light_bulb_on);
-                    hintSwitch="on";
-                }else{
-                    bulb.setBackgroundResource(R.drawable.light_bulb_off);
-                    hintSwitch="off";
-                }*/
                 if (number_of_hint >= 1&&changed==1) {
                     TextView pre = (TextView) findViewById(last_id);
                     int answer=data.getAnser(last_id/10,last_id%10);
