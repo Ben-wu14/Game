@@ -31,13 +31,11 @@ public class Game2 extends Activity {
 
     int total_blank;
 
-    String hintSwitch="off";
     ViewGroup vs;
     LinearLayout layout_hint;
     ImageView bulb;
     ImageView number_hint;
     int number_of_hint=5;
-    LinearLayout whole;
 
     TextView timerTextView;
     long startTime =System.currentTimeMillis();;
@@ -63,6 +61,7 @@ public class Game2 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
+
 
         vs=(ViewGroup)findViewById(R.id.layout_whole);
         bulb=(ImageView)findViewById(R.id.bulb);
@@ -338,7 +337,9 @@ public class Game2 extends Activity {
         int i=last_id/10,j=last_id%10;
         if(a[i][j]==0){
             t.setText("");
-            total_blank++;
+            if(userAnswer[i][j]!=0){
+                total_blank++;
+            }
             userAnswer[i][j]=0;
             froze=0;
             checkMistake(-1);
