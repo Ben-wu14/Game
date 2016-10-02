@@ -23,7 +23,6 @@ import org.w3c.dom.Text;
 public class Game2 extends Activity {
     int last_id=0;//the id of the latest clicked view
     int a[][]=new int[9][9];//question array
-    int b[][]=new int[9][9];//correct answer array
     int userAnswer[][]=new int[9][9];//answer array
     int difficulty;//the difficulty of the game
     ArrayData data;//object that generate the array
@@ -32,9 +31,7 @@ public class Game2 extends Activity {
 
     int total_blank;
 
-    ViewGroup vs;
     LinearLayout layout_hint;
-    ImageView bulb;
     ImageView number_hint;
     int number_of_hint=5;
 
@@ -64,128 +61,15 @@ public class Game2 extends Activity {
         setContentView(R.layout.activity_game2);
 
 
-        vs=(ViewGroup)findViewById(R.id.layout_whole);
-        bulb=(ImageView)findViewById(R.id.bulb);
-        number_hint=(ImageView)findViewById(R.id.number_hint);
-        layout_hint=(LinearLayout)findViewById(R.id.layout_hint);
-        layout_hint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (number_of_hint >= 1&&changed==1) {
-                    TextView pre = (TextView) findViewById(last_id);
-                    int answer=data.getAnser(last_id/10,last_id%10);
-                    changed=0;
-                    pre.setText(""+answer);
-                    if(userAnswer[last_id/10][last_id%10]==0){
-                        total_blank--;
-                    }
-                    userAnswer[last_id/10][last_id%10]=answer;
-                    checkMistake(answer);
-                    froze=0;
-                    number_of_hint--;
-                    switch (number_of_hint) {
-                        case 4:
-                            number_hint.setBackgroundResource(R.drawable.four);
-                            break;
-                        case 3:
-                            number_hint.setBackgroundResource(R.drawable.three);
-                            break;
-                        case 2:
-                            number_hint.setBackgroundResource(R.drawable.two);
-                            break;
-                        case 1:
-                            number_hint.setBackgroundResource(R.drawable.one);
-                            break;
-                        case 0:
-                            number_hint.setBackgroundResource(R.drawable.number);
-                            break;
-                    }
-                }
-            }
-        });
+        HintManagement();
 
         timerTextView = (TextView) findViewById(R.id.timerTextView);
         timerHandler.postDelayed(timerRunnable, 0);
 
-
-        int i,j;
-
-        data=new ArrayData();//create a class to create new data
-        data.Inital();//Initial the answer
-        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
-        difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
-        data.SetDifficulty(difficulty);//Initial the question
-        total_blank=9*(difficulty+1);
-        a=data.getQuestion();//get the question
-        for (i=0;i<9;i++){
-            for(j=0;j<9;j++){
-                userAnswer[i][j]=a[i][j];
-            }
-        }//copy the question to the user answer array
-        //intial places >>>>>>>>>>>>>>>>>
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels/9;//1/9width of the screen
-        TableLayout layout=(TableLayout)findViewById(R.id.tableLayout);
-        for(i=0;i<9;i++)
-        {
-            TableRow tableRow=new TableRow(this);
-            for (j=0;j<9;j++){
-                final TextView textView=new TextView(this);
-                if(a[i][j]==0)textView.setText("");
-                else textView.setText(""+a[i][j]);
-                textView.setId(i * 10 + j);
-                textView.setWidth(width);
-                textView.setTextColor(Color.GRAY);
-                textView.setTextSize(width / 5);
-                if(a[i][j]==0)
-                    textView.setTextColor(Color.parseColor("#000000"));
-                textView.setHeight(width);
-                textView.setGravity(0x11);//center
-                if(i==2||i==5)
-                {
-                    if(j==2||j==5)
-                    {
-                        textView.setBackgroundResource(R.drawable.add_down_right);
-                    }else
-                        textView.setBackgroundResource(R.drawable.add_down);
-                }else
-                {
-                    if(j==2||j==5)
-                        textView.setBackgroundResource(R.drawable.add_right);
-                    else
-                        textView.setBackgroundResource(R.drawable.add_border);
-                }
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(a[textView.getId()/10][textView.getId()%10]==0&&froze==0) {
-                            textView.setBackgroundResource(R.drawable.color_bacgr_border);
-                            TextView pre = (TextView) findViewById(last_id);
-                            if (pre != textView) {
-                                changed=1;
-                                int i = last_id / 10, j = last_id % 10;
-                                changed=1;
-                                if (i == 2 || i == 5) {
-                                    if (j == 2 || j == 5) {
-                                        pre.setBackgroundResource(R.drawable.add_down_right);
-                                    } else
-                                        pre.setBackgroundResource(R.drawable.add_down);
-                                } else {
-                                    if (j == 2 || j == 5)
-                                        pre.setBackgroundResource(R.drawable.add_right);
-                                    else
-                                        pre.setBackgroundResource(R.drawable.add_border);
-                                }
-                            }else changed=0;
-                            last_id = textView.getId();
-                        }
-                    }
-                });
-                tableRow.addView(textView);
-            }
-            layout.addView(tableRow);
-        }
+        InitialNewData();
+        //copy the question to the user answer array
+        //initial places >>>>>>>>>>>>>>>>>
+        DisplayManagement();
     }
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
@@ -362,6 +246,126 @@ public class Game2 extends Activity {
         if(froze==1){
             test.setTextColor(Color.RED);
         }else test.setTextColor(Color.BLACK);
+    }
+    public void InitialNewData(){
+        int i,j;
+        data=new ArrayData();//create a class to create new data
+        data.Inital();//Initial the answer
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
+        difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
+        data.SetDifficulty(difficulty);//Initial the question
+        total_blank=9*(difficulty+1);
+        a=data.getQuestion();//get the question
+        for (i=0;i<9;i++){
+            for(j=0;j<9;j++){
+                userAnswer[i][j]=a[i][j];
+            }
+        }
+    }
+    public void DisplayManagement(){
+        int i,j;
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels/9;//1/9width of the screen
+        TableLayout layout=(TableLayout)findViewById(R.id.tableLayout);
+        for(i=0;i<9;i++)
+        {
+            TableRow tableRow=new TableRow(this);
+            for (j=0;j<9;j++){
+                final TextView textView=new TextView(this);
+                if(a[i][j]==0)textView.setText("");
+                else textView.setText(""+a[i][j]);
+                textView.setId(i * 10 + j);
+                textView.setWidth(width);
+                textView.setTextColor(Color.GRAY);
+                textView.setTextSize(width / 5);
+                if(a[i][j]==0)
+                    textView.setTextColor(Color.parseColor("#000000"));
+                textView.setHeight(width);
+                textView.setGravity(0x11);//center
+                if(i==2||i==5)
+                {
+                    if(j==2||j==5)
+                    {
+                        textView.setBackgroundResource(R.drawable.add_down_right);
+                    }else
+                        textView.setBackgroundResource(R.drawable.add_down);
+                }else
+                {
+                    if(j==2||j==5)
+                        textView.setBackgroundResource(R.drawable.add_right);
+                    else
+                        textView.setBackgroundResource(R.drawable.add_border);
+                }
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//selection section
+                        if(a[textView.getId()/10][textView.getId()%10]==0&&froze==0) {
+                            textView.setBackgroundResource(R.drawable.color_bacgr_border);
+                            TextView pre = (TextView) findViewById(last_id);
+                            if (pre != textView) {
+                                changed=1;
+                                int i = last_id / 10, j = last_id % 10;
+                                changed=1;
+                                if (i == 2 || i == 5) {
+                                    if (j == 2 || j == 5) {
+                                        pre.setBackgroundResource(R.drawable.add_down_right);
+                                    } else
+                                        pre.setBackgroundResource(R.drawable.add_down);
+                                } else {
+                                    if (j == 2 || j == 5)
+                                        pre.setBackgroundResource(R.drawable.add_right);
+                                    else
+                                        pre.setBackgroundResource(R.drawable.add_border);
+                                }
+                            }else changed=0;
+                            last_id = textView.getId();
+                        }
+                    }
+                });
+                tableRow.addView(textView);
+            }
+            layout.addView(tableRow);
+        }
+    }
+    public void HintManagement(){
+        number_hint=(ImageView)findViewById(R.id.number_hint);
+        layout_hint=(LinearLayout)findViewById(R.id.layout_hint);
+        layout_hint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (number_of_hint >= 1&&changed==1) {
+                    TextView pre = (TextView) findViewById(last_id);
+                    int answer=data.getAnser(last_id/10,last_id%10);
+                    changed=0;
+                    pre.setText(""+answer);
+                    if(userAnswer[last_id/10][last_id%10]==0){
+                        total_blank--;
+                    }
+                    userAnswer[last_id/10][last_id%10]=answer;
+                    checkMistake(answer);
+                    froze=0;
+                    number_of_hint--;
+                    switch (number_of_hint) {
+                        case 4:
+                            number_hint.setBackgroundResource(R.drawable.four);
+                            break;
+                        case 3:
+                            number_hint.setBackgroundResource(R.drawable.three);
+                            break;
+                        case 2:
+                            number_hint.setBackgroundResource(R.drawable.two);
+                            break;
+                        case 1:
+                            number_hint.setBackgroundResource(R.drawable.one);
+                            break;
+                        case 0:
+                            number_hint.setBackgroundResource(R.drawable.number);
+                            break;
+                    }
+                }
+            }
+        });
     }
     public boolean complete(){
         return froze==0&&total_blank==0;
