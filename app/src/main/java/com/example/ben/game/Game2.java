@@ -99,7 +99,7 @@ public class Game2 extends Activity {
                     checkMistake(answer);
                     froze=0;
                     number_of_hint--;
-                    if(userAnswer[i][j]==0){
+                    if(userAnswer[last_id/10][last_id%10]==0){
                         total_blank--;
                     }
                     switch (number_of_hint) {
