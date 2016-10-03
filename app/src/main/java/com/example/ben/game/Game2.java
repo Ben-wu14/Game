@@ -20,6 +20,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class Game2 extends Activity {
     int last_id=0;//the id of the latest clicked view
     int a[][]=new int[9][9];//question array
@@ -35,6 +40,7 @@ public class Game2 extends Activity {
     ImageView number_hint;
     int number_of_hint=5;
 
+    int min,sec;
     TextView timerTextView;
     long startTime =System.currentTimeMillis();;
     Handler timerHandler = new Handler();
@@ -52,6 +58,8 @@ public class Game2 extends Activity {
             else layout_hint.setEnabled(false);
 
             timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+            min=minutes;
+            sec=seconds;
             timerHandler.postDelayed(this, 500);
         }
     };
@@ -70,6 +78,12 @@ public class Game2 extends Activity {
         //copy the question to the user answer array
         //initial places >>>>>>>>>>>>>>>>>
         DisplayManagement();
+    }
+
+    @Override
+    protected void onPause() {
+        save();
+        super.onPause();
     }
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
@@ -369,5 +383,19 @@ public class Game2 extends Activity {
     }
     public boolean complete(){
         return froze==0&&total_blank==0;
+    }
+    public void save(){
+        try{
+                ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("game.dat",true)));
+                output.writeObject(data);
+                output.writeObject(userAnswer);
+                output.writeInt(difficulty);
+                output.writeInt(total_blank);
+                output.writeInt(min);
+                output.writeInt(sec);
+                }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
