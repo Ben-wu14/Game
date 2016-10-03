@@ -1,8 +1,12 @@
 package com.example.ben.game;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -60,6 +64,18 @@ public class GameList extends Activity {
         }catch (ClassNotFoundException e){
             e.printStackTrace();
         }
+        ListView listView=(ListView)findViewById(R.id.list);
+        ArrayFileAdapter adapter=new ArrayFileAdapter(this,arrayFileArrayList);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ArrayFile dataFile=(ArrayFile)parent.getItemAtPosition(position);
+                Intent i=new Intent(GameList.this,Game2.class);
+                i.putExtra("FileData",dataFile);
+                startActivity(i);
+            }
+        });
     }
     public void getUsername(){
         SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
