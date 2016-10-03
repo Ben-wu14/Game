@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class Game2 extends Activity {
     String username;
@@ -428,5 +429,21 @@ public class Game2 extends Activity {
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+    public void getDataInFile(){
+        Intent intent=getIntent();
+        ArrayList<ArrayFile> dataList=(ArrayList<ArrayFile>)intent.getSerializableExtra("FileData");
+        ArrayFile datafile=dataList.get((int) intent.getSerializableExtra("position"));
+        data=datafile.getData();
+        userAnswer=datafile.getUserAnser();
+        difficulty=datafile.getDifficulty();
+        total_blank=datafile.getTotal_blank();
+        min=datafile.getMin();
+        sec=datafile.getSec();
+    }
+    public boolean isNew(){
+     if(getCallingActivity().getClassName().matches("MainAcitvity.*")){
+            return false;
+        }else return true;
     }
 }
