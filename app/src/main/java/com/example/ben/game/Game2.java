@@ -398,6 +398,10 @@ public class Game2 extends Activity {
     }
     public void save(){
         String filePath = Game2.this.getFilesDir().getPath().toString() + username+"game.dat";
+        SharedPreferences sp=getSharedPreferences("filePath",MODE_APPEND);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putString("path",Game2.this.getFilesDir().getPath().toString());
+        editor.commit();
         File f=new File(filePath);
         if (!f.exists())
         {
