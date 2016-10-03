@@ -23,6 +23,7 @@ public class GameList extends Activity {
     int total_blank;
     int min;
     int sec;
+    ArrayList<ArrayFile> arrayFileArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class GameList extends Activity {
         SharedPreferences sp=getSharedPreferences("filePath",MODE_APPEND);
         String path=sp.getString("path","");
 
-        ArrayList<ArrayFile> arrayFileArrayList=new ArrayList<>();
+        arrayFileArrayList=new ArrayList<>();
         String filePath = path + username+"game.dat";
         File f=new File(filePath);
         if (!f.exists())
@@ -70,10 +71,12 @@ public class GameList extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayFile dataFile=(ArrayFile)parent.getItemAtPosition(position);
+               // ArrayFile dataFile=(ArrayFile)parent.getItemAtPosition(position);
                 Intent i=new Intent(GameList.this,Game2.class);
-                i.putExtra("FileData",dataFile);
-                startActivity(i);
+                i.putExtra("FileData",arrayFileArrayList);
+                i.putExtra("Position",position);
+
+                startActivityForResult(i,1);
             }
         });
     }

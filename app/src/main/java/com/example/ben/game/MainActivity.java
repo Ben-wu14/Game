@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Game2.class);
-                startActivity(i);
+                startActivityForResult(i,1);
             }
         });
         Button difficult=(Button)findViewById(R.id.difficulty);
