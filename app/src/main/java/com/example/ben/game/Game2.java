@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class Game2 extends Activity {
+    String username;
     int last_id=0;//the id of the latest clicked view
     int a[][]=new int[9][9];//question array
     int userAnswer[][]=new int[9][9];//answer array
@@ -69,6 +70,7 @@ public class Game2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
 
+        getUsername();
 
         HintManagement();
 
@@ -389,9 +391,13 @@ public class Game2 extends Activity {
     public boolean complete(){
         return froze==0&&total_blank==0;
     }
+    public void getUsername(){
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        username=sp.getString("name","");
+    }
     public void save(){
         try{
-                ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("game.dat",true)));
+                ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(username+"game.dat",true)));
                 output.writeObject(data);
                 output.writeObject(userAnswer);
                 output.writeInt(difficulty);
