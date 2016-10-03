@@ -1,6 +1,7 @@
 package com.example.ben.game;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -362,6 +363,10 @@ public class Game2 extends Activity {
         if(froze==1){
             test.setTextColor(Color.RED);
         }else test.setTextColor(Color.BLACK);
+        if(complete()){
+            Intent in= new Intent(Game2.this,Win.class);
+            startActivity(in);
+        }
     }
     public boolean complete(){
         return froze==0&&total_blank==0;
