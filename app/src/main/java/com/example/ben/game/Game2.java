@@ -22,6 +22,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -396,8 +397,22 @@ public class Game2 extends Activity {
         username=sp.getString("name","");
     }
     public void save(){
+        String filePath = Game2.this.getFilesDir().getPath().toString() + username+"game.dat";
+        File f=new File(filePath);
+        if (!f.exists())
+        {
+            try
+            {
+                f.createNewFile();
+            }
+            catch (IOException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         try{
-                ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(username+"game.dat",true)));
+                ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f,true)));
                 output.writeObject(data);
                 output.writeObject(userAnswer);
                 output.writeInt(difficulty);

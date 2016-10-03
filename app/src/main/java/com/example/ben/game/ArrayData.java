@@ -1,11 +1,12 @@
 package com.example.ben.game;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by ben on 2016/9/23.
  */
-public class ArrayData {
+public class ArrayData implements Serializable{
     private int difficu;
     private int[][] a;
     private int[][] b;
