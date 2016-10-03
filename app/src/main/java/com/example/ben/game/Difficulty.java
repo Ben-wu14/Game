@@ -25,7 +25,7 @@ public class Difficulty extends Activity {
                 difficulty=1;
                 editor.putInt("difficulty",difficulty);
                 editor.commit();
-                startActivity(i);
+                startActivityForResult(i,1);
 
             }
         });
@@ -37,7 +37,7 @@ public class Difficulty extends Activity {
                 difficulty=2;
                 editor.putInt("difficulty",difficulty);
                 editor.commit();
-                startActivity(i);
+                startActivityForResult(i,1);
 
             }
         });
@@ -49,7 +49,7 @@ public class Difficulty extends Activity {
                 difficulty=3;
                 editor.putInt("difficulty",difficulty);
                 editor.commit();
-                startActivity(i);
+                startActivityForResult(i,1);
 
             }
         });
