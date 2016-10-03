@@ -393,6 +393,7 @@ public class Game2 extends Activity {
                 output.writeInt(total_blank);
                 output.writeInt(min);
                 output.writeInt(sec);
+                output.close();
                 }
         catch (IOException e){
             e.printStackTrace();
