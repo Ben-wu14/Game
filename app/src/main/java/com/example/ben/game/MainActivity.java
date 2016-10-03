@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Game2.class);
-                startActivityForResult(i,1);
+                Intent i = new Intent(MainActivity.this, GameList.class);
+                startActivity(i);
             }
         });
         Button difficult=(Button)findViewById(R.id.difficulty);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Difficulty.class);
-                startActivity(i);
+                startActivityForResult(i,1);
             }
         });
         Button help=(Button)findViewById(R.id.help);
