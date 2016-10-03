@@ -1,9 +1,11 @@
 package com.example.ben.game;
 
+import java.io.Serializable;
+
 /**
  * Created by ben on 2016/10/3.
  */
-public class ArrayFile {
+public class ArrayFile implements Serializable{
     private ArrayData data;
     private int[][] userAnser;
     private int difficulty;
