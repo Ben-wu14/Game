@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -39,12 +40,15 @@ public class Game2 extends Activity {
     int froze=0;//used when the mistake occur and need to froze the screen
 
     int total_blank;
+    ArrayList<ArrayFile> dataList;
+    ArrayFile datafile;
 
     LinearLayout layout_hint;
     ImageView number_hint;
     int number_of_hint=5;
 
     int min,sec;
+    int premin,presec;
     TextView timerTextView;
     long startTime =System.currentTimeMillis();;
     Handler timerHandler = new Handler();
@@ -54,8 +58,8 @@ public class Game2 extends Activity {
         @Override
         public void run() {
             long millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
+            int seconds = (int) (millis / 1000)+presec+premin*60;
+            int minutes = (seconds / 60);
             seconds = seconds % 60;
 
             if(last_id!=0&&changed!=0)layout_hint.setEnabled(true);
@@ -75,20 +79,25 @@ public class Game2 extends Activity {
         getUsername();
 
         HintManagement();
+        if(isNew()){
+            InitialNewData();
+        }else getDataInFile();
+
 
         timerTextView = (TextView) findViewById(R.id.timerTextView);
         timerHandler.postDelayed(timerRunnable, 0);
 
-        InitialNewData();
+
         //copy the question to the user answer array
         //initial places >>>>>>>>>>>>>>>>>
         DisplayManagement();
     }
 
     @Override
-    protected void onPause() {
+    protected void onStop() {
         save();
-        super.onPause();
+        Toast.makeText(this,"Saved",Toast.LENGTH_SHORT).show();
+        super.onStop();
     }
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
@@ -279,6 +288,8 @@ public class Game2 extends Activity {
         data.SetDifficulty(difficulty);//Initial the question
         total_blank=9*(difficulty+3);
         a=data.getQuestion();//get the question
+        premin=0;
+        presec=0;
         for (i=0;i<9;i++){
             for(j=0;j<9;j++){
                 userAnswer[i][j]=a[i][j];
@@ -417,14 +428,20 @@ public class Game2 extends Activity {
             }
         }
         try{
-                ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f,true)));
-                output.writeObject(data);
-                output.writeObject(userAnswer);
-                output.writeInt(difficulty);
-                output.writeInt(total_blank);
-                output.writeInt(min);
-                output.writeInt(sec);
-                output.close();
+
+                if(isNew()){
+                    ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f,true)));
+                    ArrayFile filenew=new ArrayFile(data,userAnswer,difficulty,total_blank,min,sec);
+                    output.writeObject(filenew);
+                    output.close();
+                }else{
+                    ObjectOutputStream output=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
+                    for (ArrayFile da: dataList){
+                        output.writeObject(da);
+                    }
+                    output.close();
+                }
+
                 }
         catch (IOException e){
             e.printStackTrace();
@@ -432,18 +449,19 @@ public class Game2 extends Activity {
     }
     public void getDataInFile(){
         Intent intent=getIntent();
-        ArrayList<ArrayFile> dataList=(ArrayList<ArrayFile>)intent.getSerializableExtra("FileData");
-        ArrayFile datafile=dataList.get((int) intent.getSerializableExtra("position"));
+        dataList=(ArrayList<ArrayFile>)intent.getSerializableExtra("FileData");
+        datafile=(ArrayFile) intent.getSerializableExtra("position");
         data=datafile.getData();
         userAnswer=datafile.getUserAnser();
         difficulty=datafile.getDifficulty();
         total_blank=datafile.getTotal_blank();
-        min=datafile.getMin();
-        sec=datafile.getSec();
+        premin=datafile.getMin();
+        presec=datafile.getSec();
     }
     public boolean isNew(){
-     if(getCallingActivity().getClassName().matches("MainAcitvity.*")){
-            return false;
-        }else return true;
+        String classname=getCallingActivity().getClassName();
+     if(classname.matches("com.example.ben.game.Difficulty")){
+            return true;
+        }else return false;
     }
 }
