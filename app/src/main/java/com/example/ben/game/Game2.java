@@ -1,6 +1,7 @@
 package com.example.ben.game;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -260,6 +261,10 @@ public class Game2 extends Activity {
         if(froze==1){
             test.setTextColor(Color.RED);
         }else test.setTextColor(Color.BLACK);
+        if(complete()){
+            Intent in= new Intent(Game2.this,Win.class);
+            startActivity(in);
+        }
     }
     public void InitialNewData(){
         int i,j;
@@ -268,7 +273,7 @@ public class Game2 extends Activity {
         SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);//get the doc
         difficulty=sp.getInt("difficulty",1);//get the difficulty number from Activity Difficulty,if(nothing)then return 1
         data.SetDifficulty(difficulty);//Initial the question
-        total_blank=9*(difficulty+1);
+        total_blank=9*(difficulty+3);
         a=data.getQuestion();//get the question
         for (i=0;i<9;i++){
             for(j=0;j<9;j++){
