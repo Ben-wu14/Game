@@ -34,6 +34,10 @@
         </activity>
         <activity android:name=".Win" >
         </activity>
+        <activity
+            android:name=".GameList"
+            android:label="@string/title_activity_game_list" >
+        </activity>
     </application>
 
 </manifest>
