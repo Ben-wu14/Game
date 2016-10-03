@@ -17,12 +17,6 @@ import java.util.ArrayList;
 
 public class GameList extends Activity {
     String username;
-    ArrayData data;
-    int[][] userAnser;
-    int difficulty;
-    int total_blank;
-    int min;
-    int sec;
     ArrayList<ArrayFile> arrayFileArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +46,10 @@ public class GameList extends Activity {
             ObjectInputStream input=new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)));
             Object object;
             while((object=input.readObject()) != null){
-                data=(ArrayData)object;
-                userAnser=(int[][])input.readObject();
-                difficulty=input.readInt();
-                total_blank=input.readInt();
-                min=input.readInt();
-                sec=input.readInt();
-                arrayFileArrayList.add(new ArrayFile(data,userAnser,difficulty,total_blank,min,sec));
+                ArrayFile array=(ArrayFile)object;
+                arrayFileArrayList.add(array);
             }
+            input.close();
         }catch (IOException e){
             e.printStackTrace();
         }catch (ClassNotFoundException e){
@@ -71,10 +61,10 @@ public class GameList extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // ArrayFile dataFile=(ArrayFile)parent.getItemAtPosition(position);
+                ArrayFile dataFile=(ArrayFile)parent.getItemAtPosition(position);
                 Intent i=new Intent(GameList.this,Game2.class);
                 i.putExtra("FileData",arrayFileArrayList);
-                i.putExtra("Position",position);
+                i.putExtra("Position",dataFile);
 
                 startActivityForResult(i,1);
             }
