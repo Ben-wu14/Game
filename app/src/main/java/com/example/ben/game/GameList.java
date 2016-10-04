@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class GameList extends Activity {
     String username;
     ArrayList<ArrayFile> arrayFileArrayList;
+    ArrayFile dataFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +67,14 @@ public class GameList extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayFile dataFile=(ArrayFile)parent.getItemAtPosition(position);
+                dataFile=(ArrayFile)parent.getItemAtPosition(position);
                 Intent i=new Intent(GameList.this,Game2.class);
-                i.putExtra("FileData",arrayFileArrayList);
-                i.putExtra("Position",dataFile);
+                Bundle bundle2=new Bundle();
+                bundle2.putSerializable("FileData", arrayFileArrayList);
+                i.putExtras(bundle2);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("position", dataFile);
+                i.putExtras(bundle);
 
                 startActivityForResult(i,1);
             }
