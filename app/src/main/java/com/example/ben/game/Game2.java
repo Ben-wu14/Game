@@ -52,7 +52,7 @@ public class Game2 extends Activity {
             int minutes = seconds / 60;
             seconds = seconds % 60;
 
-            if(last_id!=0&&changed!=0)layout_hint.setEnabled(true);
+            if(changed!=0)layout_hint.setEnabled(true);
             else layout_hint.setEnabled(false);
 
             timerTextView.setText(String.format("%d:%02d", minutes, seconds));
@@ -82,8 +82,12 @@ public class Game2 extends Activity {
                     }
                     userAnswer[last_id/10][last_id%10]=answer;
                     checkMistake(answer);
+                    if(froze==0){
+                        TextView now = (TextView) findViewById(last_id);
+                        now.setTextColor(Color.BLACK);
+                    }
                     froze=0;
-                    number_of_hint--;
+                    //number_of_hint--;
                     switch (number_of_hint) {
                         case 4:
                             number_hint.setBackgroundResource(R.drawable.four);
