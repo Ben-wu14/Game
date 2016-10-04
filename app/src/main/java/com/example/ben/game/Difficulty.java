@@ -17,6 +17,11 @@ public class Difficulty extends Activity {
         SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
         editor = sp.edit();
 
+        SharedPreferences sp2=getSharedPreferences("filePath",MODE_APPEND);
+        SharedPreferences.Editor editor2=sp2.edit();
+        editor2.putString("sender","Difficulty");
+        editor2.commit();
+
         Button easy=(Button)findViewById(R.id.easy);
         easy.setOnClickListener(new View.OnClickListener() {
             @Override

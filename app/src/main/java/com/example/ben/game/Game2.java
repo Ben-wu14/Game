@@ -95,10 +95,10 @@ public class Game2 extends Activity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
         save();
         Toast.makeText(this,"Saved",Toast.LENGTH_SHORT).show();
-        super.onStop();
+        super.onPause();
     }
     public void buttonP1(View view){
         TextView t=(TextView)findViewById(last_id);
@@ -460,10 +460,9 @@ public class Game2 extends Activity {
         presec=datafile.getSec();
     }
     public boolean isNew(){
-        String classname=getCallingActivity().getClassName();
-     if(classname.matches("com.example.ben.game.Difficulty")){
-            return true;
-        }else return false;
+        SharedPreferences sp2=getSharedPreferences("filePath", MODE_APPEND);
+        String sender=sp2.getString("sender", "");
+        return  (sender.equals("Difficulty"));
     }
 
     @Override

@@ -27,6 +27,11 @@ public class GameList extends Activity {
         SharedPreferences sp=getSharedPreferences("filePath",MODE_APPEND);
         String path=sp.getString("path","");
 
+        SharedPreferences sp2=getSharedPreferences("filePath",MODE_APPEND);
+        SharedPreferences.Editor editor2=sp2.edit();
+        editor2.putString("sender","GameList");
+        editor2.commit();
+
         arrayFileArrayList=new ArrayList<>();
         String filePath = path + username+"game.dat";
         File f=new File(filePath);
