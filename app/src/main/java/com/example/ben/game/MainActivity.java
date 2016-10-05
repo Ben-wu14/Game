@@ -35,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Game2.class);
-                startActivity(i);
-            }
-        });
-        Button difficult=(Button)findViewById(R.id.difficulty);
-        difficult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Difficulty.class);
                 startActivity(i);
             }
@@ -52,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(MainActivity.this,Help.class);
+                startActivity(i);
+            }
+        });
+        Button setting=(Button)findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(MainActivity.this,SettingActivity.class);
                 startActivity(i);
             }
         });
