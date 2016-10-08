@@ -410,13 +410,12 @@ public class Game2 extends Activity {
         username=sp.getString("name","");
     }
     public void save(){
-        String filePath = Game2.this.getFilesDir().getPath().toString()+"/" + username+"game.dat";
+        String filePath = Game2.this.getFilesDir().getPath()+"/" + username+"game.dat";
         SharedPreferences sp=getSharedPreferences("filePath",MODE_APPEND);
         SharedPreferences.Editor editor=sp.edit();
-        editor.putString("path",Game2.this.getFilesDir().getPath().toString()+"/");
+        editor.putString("path",Game2.this.getFilesDir().getPath()+"/");
         editor.commit();
         File f=new File(filePath);
-        f.setWritable(true);
         if (!f.exists())
         {
             try
