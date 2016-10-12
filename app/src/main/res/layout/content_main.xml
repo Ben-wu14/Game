@@ -54,19 +54,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/difficulty"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textSize="20sp"
-        android:id="@+id/difficulty"
-        android:background="@drawable/green"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:layout_gravity="center"/>
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/setting"
         android:text="@string/setting"
         android:textStyle="bold"
         android:textAllCaps="true"
@@ -76,7 +64,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:onClick="button"/>
+        />
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -90,6 +78,20 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp"
         android:gravity="center"
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/log_out"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:id="@+id/difficulty"
+        android:background="@drawable/green"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:onClick="button"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"

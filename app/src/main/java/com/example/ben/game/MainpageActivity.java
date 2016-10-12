@@ -21,6 +21,10 @@ public class MainpageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
+        SharedPreferences sp2=getSharedPreferences("Login", MODE_APPEND);
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putString("name", "");
+        editor2.putString("password","");
         nam=(EditText)findViewById(R.id.edit);
         pas=(EditText)findViewById(R.id.password);
         Button button_log=(Button)findViewById(R.id.button_log);

@@ -26,13 +26,15 @@
         </activity>
         <activity android:name=".MainpageActivity" >
         </activity>
-        <activity android:name=".SettingActivity" >
+        <activity android:name=".RenameActivity" >
         </activity>
         <activity android:name=".PasswordActivity" >
         </activity>
         <activity android:name=".Register_Activity" >
         </activity>
         <activity android:name=".Win" >
+        </activity>
+        <activity android:name=".SettingActivity" >
         </activity>
     </application>
 

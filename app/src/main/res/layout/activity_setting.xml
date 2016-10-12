@@ -7,60 +7,21 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.example.ben.game.SettingActivity">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SETTINGS"
-        android:textColor="#336666"
-        android:textStyle="bold"
-        android:textSize="35sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        />
-    <View
-        android:layout_width="100dp"
-        android:layout_gravity="center"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#3D7876" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:background="#ff9966"
-        android:layout_marginTop="20dp"
-        android:text=" CHANGE THE USERNAME >>"
-        android:id="@+id/textView" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/setting"/>
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="30dip"
-            android:background="#FAEBD7"
-            android:padding="5dip"
-            android:textColorHint="#AAAAAA"
-            android:textSize="20dip"
-            android:layout_marginTop="10dp"
-            android:singleLine="true"
-            android:layout_gravity="center"
-            android:hint="Please Enter Your UserName "
-            />
+        android:id="@+id/rename_button"
+        android:text="Rename"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/change_password_button"
+        android:text="change password"/>
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="Sure?"
-            android:textSize="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_gravity="center"
-            android:background="@drawable/yes"/>
-
-</LinearLayout>
 </LinearLayout>
