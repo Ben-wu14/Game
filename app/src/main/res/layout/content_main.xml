@@ -54,7 +54,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/difficulty"
+        android:text="@string/difficult"
         android:textStyle="bold"
         android:textAllCaps="true"
         android:textSize="20sp"
