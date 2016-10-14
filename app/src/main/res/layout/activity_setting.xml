@@ -6,21 +6,42 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@drawable/setting2"
     tools:context="com.example.ben.game.SettingActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:textSize="36sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#3e3ee7"
         android:text="@string/setting"/>
+    <View
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="5dp"
+        android:background="#3e3ee7" />
     <Button
         android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttonlayout_green"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/rename_button"
-        android:text="Rename"/>
+        android:text="Rename the userName"/>
     <Button
         android:layout_width="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonlayout_green"
         android:id="@+id/change_password_button"
         android:text="change password"/>
 
