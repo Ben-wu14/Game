@@ -27,7 +27,7 @@ public class PasswordActivity extends Activity {
             @Override
             public void onClick(View v) {
                 SharedPreferences sp2 = getSharedPreferences("Login", MODE_APPEND);
-                old=sp2.getString("name","");
+                old=sp2.getString("password","");
                 oldpas = (EditText) findViewById(R.id.origin_pass_input);
                 old_pass = oldpas.getText().toString();
                 pas1 = (EditText) findViewById(R.id.change_password);
